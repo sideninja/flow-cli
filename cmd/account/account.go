@@ -8,8 +8,10 @@ import (
 // NewCmdAccount account cmd factory
 func NewCmdAccount() *cobra.Command {
 	var accountCmd = &cobra.Command{
-		Use:   "account",
-		Short: "Get account information, create account, add account key",
+		Use:     "account",
+		Short:   "Get account information, create account, add account key",
+		Aliases: []string{"acc"},
+		Args:    cobra.ExactArgs(0),
 		Long: `
 Manage and view flow account.
 		`,
