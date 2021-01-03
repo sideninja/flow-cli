@@ -11,11 +11,13 @@ type IGateway interface {
 }
 
 // CreateGateway creates a gateway from a factory
-func CreateGateway(method string) IGateway {
+func CreateGateway(method string, url string) IGateway {
 	// check if testing or rest setting and return test instance
 	if method == "rest" {
 		return &Rest{}
 	}
 
-	return &GRPC{}
+	return &GRPC{
+		APIURL: url,
+	}
 }

@@ -2,13 +2,14 @@ package cmd
 
 import (
 	accountCmd "github.com/sideninja/flow-cli/cmd/account"
+	"github.com/sideninja/flow-cli/gateway"
 	"github.com/spf13/cobra"
 )
 
 var cfgFile string
 
 // NewCmdRoot root command factory
-func NewCmdRoot() *cobra.Command {
+func NewCmdRoot(gateway gateway.IGateway, version string) *cobra.Command {
 
 	var (
 		json bool
@@ -22,12 +23,10 @@ func NewCmdRoot() *cobra.Command {
 Flow CLI tool to interact with flow emulator.`,
 	}
 
-	rootCmd.AddCommand(accountCmd.NewCmdAccount())
+	rootCmd.AddCommand(accountCmd.NewCmdAccount(gateway, version))
 
 	rootCmd.Flags().BoolP("version", "v", false, "show version information")
 	rootCmd.PersistentFlags().BoolVarP(&json, "json", "j", false, "show output format as JSON")
-
-	//rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 
 	return rootCmd
 }

@@ -8,7 +8,7 @@ import (
 )
 
 // NewCmdGet get account command factory
-func NewCmdGet() *cobra.Command {
+func NewCmdGet(gateway gateway.IGateway, version string) *cobra.Command {
 	var (
 		blockHeight int
 		filter      string
@@ -23,8 +23,7 @@ func NewCmdGet() *cobra.Command {
 Gets an account by address (address, balance, keys, code)`,
 		Args: cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
-			gw := gateway.CreateGateway("")
-			account := gw.GetAccount(args[0])
+			account := gateway.GetAccount(args[0])
 
 			if !json {
 				fmt.Println(account.String(filter))

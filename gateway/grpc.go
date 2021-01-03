@@ -12,12 +12,14 @@ import (
 )
 
 // GRPC api implementation
-type GRPC struct{}
+type GRPC struct {
+	APIURL string
+}
 
 // GetAccount gets account by the address via grpc call
 func (g *GRPC) GetAccount(address string) *models.Account {
 	// todo move this to singleton for grpc and should be executed by root cmd
-	flowClient, err := client.New("localhost:3569", grpc.WithInsecure())
+	flowClient, err := client.New(g.APIURL, grpc.WithInsecure())
 
 	if err != nil {
 		log.Fatal(err)
