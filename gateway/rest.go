@@ -1,3 +1,9 @@
 package gateway
 
-// Possible rest implementation
+// Rest possible implementation
+type Rest struct{}
+
+// GetAccount gets account over rest api
+func (r *Rest) GetAccount(address string) {
+	// not implemented
+}

@@ -4,7 +4,9 @@ import "github.com/onflow/flow-go-sdk"
 
 // Account is internal structure of the
 // account with serialization methods
-type Account flow.Account
+type Account struct {
+	*flow.Account
+}
 
 // ToString converts account to string
 func (a *Account) ToString() string {
