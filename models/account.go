@@ -12,7 +12,7 @@ type Account struct {
 	*flow.Account
 }
 
-// String converts account to string
+// String serializer for the account
 func (a *Account) String() string {
 	return fmt.Sprintf("address: %s, balance: %d", a.Address.String(), a.Balance)
 }
