@@ -8,6 +8,7 @@ import (
 // needed by the cli to be implemented by each gateway
 type IGateway interface {
 	GetAccount(address string) *models.Account
+	SetAPIURL(url string)
 }
 
 // CreateGateway creates a gateway from a factory

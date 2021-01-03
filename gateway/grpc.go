@@ -16,9 +16,15 @@ type GRPC struct {
 	APIURL string
 }
 
+// SetAPIURL sets the url of the discovery api
+func (g *GRPC) SetAPIURL(url string) {
+	// todo do url validation
+
+	g.APIURL = url
+}
+
 // GetAccount gets account by the address via grpc call
 func (g *GRPC) GetAccount(address string) *models.Account {
-	// todo move this to singleton for grpc and should be executed by root cmd
 	flowClient, err := client.New(g.APIURL, grpc.WithInsecure())
 
 	if err != nil {

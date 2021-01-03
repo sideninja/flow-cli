@@ -13,6 +13,7 @@ func NewCmdGet(gateway gateway.IGateway, version string) *cobra.Command {
 		blockHeight int
 		filter      string
 		json        bool
+		api         string
 	)
 
 	getCmd := &cobra.Command{
@@ -23,6 +24,10 @@ func NewCmdGet(gateway gateway.IGateway, version string) *cobra.Command {
 Gets an account by address (address, balance, keys, code)`,
 		Args: cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
+			if api != "" {
+				gateway.SetAPIURL(api)
+			}
+
 			account := gateway.GetAccount(args[0])
 
 			if !json {
@@ -34,6 +39,7 @@ Gets an account by address (address, balance, keys, code)`,
 	}
 
 	getCmd.PersistentFlags().BoolVarP(&json, "json", "j", false, "show output format as JSON")
+	getCmd.PersistentFlags().StringVarP(&api, "api", "a", "", "set discovery api host on the fly only for this request")
 	getCmd.Flags().IntVarP(&blockHeight, "block-height", "b", -1, "gets an account at the given block height")
 	getCmd.Flags().StringVarP(&filter, "filter", "f", "", "filter output to show only provided field (address, balance, code, keys)")
 
