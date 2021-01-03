@@ -17,14 +17,16 @@ package main
 
 import (
 	"fmt"
+	"os"
 
-	"github.com/sideninja/flow-cli/gateway"
+	cmd "github.com/sideninja/flow-cli/cmd"
 )
 
 func main() {
-	//cmd.Execute()
-	gw := gateway.CreateGateway("")
-	account := gw.GetAccount("01cf0e2f2f715450")
+	rootCmd := cmd.NewCmdRoot()
 
-	fmt.Println(account)
+	if err := rootCmd.Execute(); err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 }

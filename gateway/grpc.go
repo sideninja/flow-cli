@@ -16,11 +16,14 @@ type GRPC struct{}
 
 // GetAccount gets account by the address via grpc call
 func (g *GRPC) GetAccount(address string) *models.Account {
+	// todo move this to singleton for grpc and should be executed by root cmd
 	flowClient, err := client.New("localhost:3569", grpc.WithInsecure())
 
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	// validation of params
 
 	account, err := flowClient.GetAccountAtLatestBlock(
 		context.Background(),
