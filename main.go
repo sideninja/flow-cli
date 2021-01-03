@@ -28,5 +28,5 @@ func main() {
 	gw = &gateway.GRPC{}
 	account := gw.GetAccount("01cf0e2f2f715450")
 
-	fmt.Println(account.ToString())
+	fmt.Println(account)
 }

@@ -22,9 +22,10 @@ func (g *GRPC) GetAccount(address string) *models.Account {
 		log.Fatal(err)
 	}
 
-	ctx := context.Background()
-	addr := flow.HexToAddress(address)
-	account, err := flowClient.GetAccountAtLatestBlock(ctx, addr)
+	account, err := flowClient.GetAccountAtLatestBlock(
+		context.Background(),
+		flow.HexToAddress(address),
+	)
 
 	if err != nil {
 		log.Fatal(err)

@@ -1,6 +1,10 @@
 package models
 
-import "github.com/onflow/flow-go-sdk"
+import (
+	"fmt"
+
+	"github.com/onflow/flow-go-sdk"
+)
 
 // Account is internal structure of the
 // account with serialization methods
@@ -8,7 +12,7 @@ type Account struct {
 	*flow.Account
 }
 
-// ToString converts account to string
-func (a *Account) ToString() string {
-	return a.Address.String()
+// String converts account to string
+func (a *Account) String() string {
+	return fmt.Sprintf("address: %s, balance: %d", a.Address.String(), a.Balance)
 }
