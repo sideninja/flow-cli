@@ -2,7 +2,6 @@ package gateway
 
 import (
 	"context"
-	"log"
 
 	"github.com/sideninja/flow-cli/models"
 
@@ -24,11 +23,11 @@ func (g *GRPC) SetAPIURL(url string) {
 }
 
 // GetAccount gets account by the address via grpc call
-func (g *GRPC) GetAccount(address string) *models.Account {
+func (g *GRPC) GetAccount(address string) (*models.Account, error) {
 	flowClient, err := client.New(g.APIURL, grpc.WithInsecure())
 
 	if err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
 
 	// validation of params
@@ -39,8 +38,8 @@ func (g *GRPC) GetAccount(address string) *models.Account {
 	)
 
 	if err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
 
-	return &models.Account{account}
+	return &models.Account{account}, nil
 }

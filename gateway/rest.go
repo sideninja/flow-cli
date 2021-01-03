@@ -11,7 +11,7 @@ func (r *Rest) SetAPIURL(url string) {
 }
 
 // GetAccount gets account over rest api
-func (r *Rest) GetAccount(address string) *models.Account {
+func (r *Rest) GetAccount(address string) (*models.Account, error) {
 	// not implemented
-	return &models.Account{}
+	return &models.Account{}, nil
 }

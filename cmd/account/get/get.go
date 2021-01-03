@@ -23,18 +23,24 @@ func NewCmdGet(gateway gateway.IGateway, version string) *cobra.Command {
 		Long: `
 Gets an account by address (address, balance, keys, code)`,
 		Args: cobra.ExactArgs(1),
-		Run: func(cmd *cobra.Command, args []string) {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			if api != "" {
 				gateway.SetAPIURL(api)
 			}
 
-			account := gateway.GetAccount(args[0])
+			account, err := gateway.GetAccount(args[0])
+
+			if err != nil {
+				return err
+			}
 
 			if !json {
 				fmt.Println(account.String(filter))
 			} else {
 				fmt.Println(account.JSON(filter))
 			}
+
+			return nil
 		},
 	}
 
