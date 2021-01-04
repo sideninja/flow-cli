@@ -1,3 +1,5 @@
+![Flow](./f.svg "Flow")
+
 # Flow CLI
 Flow CLI is a command line tool to interact with flow emulator and query data.
 
