@@ -13,7 +13,6 @@ func NewCmdRoot(gateway gateway.IGateway, version string) *cobra.Command {
 
 	var (
 		json bool
-		//url  string
 	)
 
 	var rootCmd = &cobra.Command{
@@ -25,9 +24,6 @@ func NewCmdRoot(gateway gateway.IGateway, version string) *cobra.Command {
 		Long: `
 Flow CLI tool to interact with flow emulator.`,
 	}
-
-	//rootCmd.PersistentFlags().StringVar(&url, "url", "", "url of discovery api")
-	//viper.BindPFlag("author", rootCmd.PersistentFlags().Lookup("author"))
 
 	// here we add all commands:
 	rootCmd.AddCommand(
