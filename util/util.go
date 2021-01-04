@@ -88,9 +88,7 @@ func InitConfig() {
 
 	if err := viper.ReadInConfig(); err != nil {
 		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
-			fmt.Println("ERROR not found")
-		} else {
-			// Config file was found but another error was produced
+			// if not found ignore it
 		}
 	}
 }
