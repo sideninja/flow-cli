@@ -28,3 +28,10 @@ Flow CLI is a command line tool to interact with flow emulator and query data.
 # Instalation
 
 Download a binary for your OS at the [releases page](https://github.com/sideninja/flow-cli).
+
+## Docker
+You can use Docker to build and run the image. Be careful docker container can access the network of Flow Emulator. Create a shared network or use host if needed.
+```bash
+docker build -t flow .
+docker run -it flow
+```
