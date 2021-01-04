@@ -1,4 +1,4 @@
-package cmd
+package account
 
 import (
 	"github.com/sideninja/flow-cli/cmd/account/get"

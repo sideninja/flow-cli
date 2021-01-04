@@ -1,15 +1,12 @@
 package cmd
 
 import (
-	"errors"
-
 	accountCmd "github.com/sideninja/flow-cli/cmd/account"
+	configCmd "github.com/sideninja/flow-cli/cmd/config"
 	"github.com/sideninja/flow-cli/gateway"
+	"github.com/sideninja/flow-cli/util"
 	"github.com/spf13/cobra"
 )
-
-// SilentErr is silent error passed through
-var SilentErr = errors.New("SilentErr")
 
 // NewCmdRoot root command factory
 func NewCmdRoot(gateway gateway.IGateway, version string) *cobra.Command {
@@ -33,7 +30,12 @@ Flow CLI tool to interact with flow emulator.`,
 	//viper.BindPFlag("author", rootCmd.PersistentFlags().Lookup("author"))
 
 	// here we add all commands:
-	rootCmd.AddCommand(accountCmd.NewCmdAccount(gateway, version))
+	rootCmd.AddCommand(
+		accountCmd.NewCmdAccount(gateway, version),
+	)
+	rootCmd.AddCommand(
+		configCmd.NewCmdConfig(gateway, version),
+	)
 
 	// always enabled version and json flags
 	rootCmd.Flags().BoolP("version", "v", false, "show version information")
@@ -43,7 +45,7 @@ Flow CLI tool to interact with flow emulator.`,
 	rootCmd.SetFlagErrorFunc(func(cmd *cobra.Command, err error) error {
 		cmd.Printf("\n\033[31mError: %s\033[0m\n\n", err)
 		cmd.Println(cmd.UsageString())
-		return SilentErr
+		return util.SilentErr
 	})
 
 	return rootCmd
