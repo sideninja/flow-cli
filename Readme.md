@@ -24,7 +24,7 @@ Flow CLI is a command line tool to interact with flow emulator and query data.
   ```
 
 ## Guidlines
-Read guidlines for this CLI design: [OUR GUIDELINES](https://github.com/sideninja/flow-cli/GUIDELINES.md)
+Read guidlines for this CLI design: [OUR GUIDELINES](https://github.com/sideninja/flow-cli/blob/master/GUIDELINES.md)
 
 ## Demo
 [![asciicast](https://asciinema.org/a/badcgVvoh6BjHlOGKHqK2jgaN.svg)](https://asciinema.org/a/badcgVvoh6BjHlOGKHqK2jgaN)
