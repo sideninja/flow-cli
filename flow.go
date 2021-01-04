@@ -16,7 +16,7 @@ func init() {
 func main() {
 
 	APIURL := viper.GetString("APIURL")
-	version := "1.0"
+	version := "1.0" // get from build
 
 	gateway := gateway.CreateGateway(models.GRPC, APIURL)
 	rootCmd := cmd.NewCmdRoot(gateway, version)
