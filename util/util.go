@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/manifoldco/promptui"
 	"github.com/onflow/flow-go-sdk/client"
@@ -19,10 +20,11 @@ var SilentErr = errors.New("SilentErr")
 func PromptURL() {
 
 	validate := func(input string) error {
-		/*_, err := strconv.ParseFloat(input, 64)
-		if err != nil {
-			return errors.New("Invalid url")
-		}*/
+		i := strings.Index(input, ":")
+		if i < 0 {
+			return errors.New("Invalid URL")
+		}
+
 		return nil
 	}
 
