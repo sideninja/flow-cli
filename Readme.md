@@ -22,7 +22,10 @@ Flow CLI is a command line tool to interact with flow emulator and query data.
   $ flow account get "01cf0e2f2f715450" --json # get all account information in JSON
   $ flow config
   ```
-  
+
+## Guidlines
+Read guidlines for this CLI design: [OUR GUIDELINES](https://github.com/sideninja/flow-cli/GUIDELINES.md)
+
 ## Demo
 [![asciicast](https://asciinema.org/a/badcgVvoh6BjHlOGKHqK2jgaN.svg)](https://asciinema.org/a/badcgVvoh6BjHlOGKHqK2jgaN)
 
