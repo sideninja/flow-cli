@@ -23,18 +23,23 @@ func (g *GRPC) SetAPIURL(url string) {
 }
 
 // GetAccount gets account by the address via grpc call
-func (g *GRPC) GetAccount(address string) (*models.Account, error) {
+func (g *GRPC) GetAccount(addr string) (*models.Account, error) {
 	flowClient, err := client.New(g.APIURL, grpc.WithInsecure())
 
 	if err != nil {
 		return nil, err
 	}
 
-	// validation of params
+	chainID := flow.ChainID("flow-emulator") // todo refactor this to config if used on other networks
+	address := flow.HexToAddress(addr)
+
+	if !address.IsValid(chainID) {
+		return nil, &InvalidAddress{}
+	}
 
 	account, err := flowClient.GetAccountAtLatestBlock(
 		context.Background(),
-		flow.HexToAddress(address),
+		address,
 	)
 
 	if err != nil {
@@ -42,4 +47,11 @@ func (g *GRPC) GetAccount(address string) (*models.Account, error) {
 	}
 
 	return &models.Account{account}, nil
+}
+
+// InvalidAddress error for wrong account address
+type InvalidAddress struct{}
+
+func (m *InvalidAddress) Error() string {
+	return "Invalid Address"
 }

@@ -7,6 +7,7 @@ import (
 
 	"github.com/manifoldco/promptui"
 	"github.com/onflow/flow-go-sdk/client"
+	"github.com/sideninja/flow-cli/gateway"
 	"github.com/spf13/viper"
 	"google.golang.org/grpc/codes"
 )
@@ -44,13 +45,20 @@ func PromptURL() {
 // HandleError main error handler for commands
 func HandleError(err error) {
 	if err != SilentErr {
-		// check if error is grpc error
-		rpcError := client.RPCError{}
-		if errors.As(err, &rpcError) {
-			handleGrpcError(rpcError)
-		} else { // unhandeled error - can be improved
-			fmt.Printf("\n\033[31mUnhandeled Error: %s\033[0m\n\n", err)
+		// check if is address error
+		_, isInvalidAddress := err.(*gateway.InvalidAddress)
+		if isInvalidAddress {
+			fmt.Printf("\n\033[31mInvalid Address: Invalid Account Address. \nPlease check Flow documentation: \n \nhttps://docs.onflow.org/cadence/language/values-and-types/#addresses\033[0m\n\n")
+			os.Exit(1)
 		}
+
+		// check if error is grpc error
+		rpcError, isRPCError := err.(client.RPCError)
+		if isRPCError {
+			handleGrpcError(rpcError)
+		}
+
+		fmt.Printf("\n\033[31mUnhandeled Error: %s\033[0m\n\n", err)
 	}
 
 	os.Exit(1)
