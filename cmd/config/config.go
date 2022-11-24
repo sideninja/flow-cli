@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"github.com/sideninja/flow-cli/gateway"
 	"github.com/sideninja/flow-cli/util"
 	"github.com/spf13/cobra"
@@ -17,6 +18,7 @@ Save persistent configuration variables.
 		`,
 		Args: cobra.ExactArgs(0),
 		RunE: func(c *cobra.Command, args []string) error {
+			fmt.Println("VERSION:", version)
 			util.PromptURL()
 			return nil
 		},
