@@ -28,4 +28,4 @@ jobs:
           goarch: ${{ matrix.goarch }}
           goversion: "1.19"
           project_path: "."
-          ldflags: "-X https://github.com/sideninja/flow-cli/blob/master/flow.semver=$(VERSION)"
+          ldflags: "-X github.com/sideninja/flow-cli/flow.semver=$(VERSION)"
