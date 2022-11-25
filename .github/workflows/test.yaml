@@ -1,0 +1,12 @@
+name: Publish Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  homebrew:
+    if: github.event_name == 'release' && github.event.action == 'published' # skip for pre-release
+    name: Bump Homebrew formula
+    steps:
+      run: echo "HELLO"
