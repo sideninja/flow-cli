@@ -8,4 +8,7 @@ jobs:
   homebrew:
     if: github.event_name == 'release' && github.event.action == 'published' # skip for pre-release
     name: Bump Homebrew formula
-    run: echo "HELLO"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "test"
+      run: echo "HELLO"
