@@ -28,4 +28,4 @@ jobs:
           goarch: ${{ matrix.goarch }}
           goversion: "1.19"
           project_path: "."
-          ldflags: -X "flow.semver=$(VERSION)" -X "flow.boo=\"boo\""
+          ldflags: -X "flow.semver=$(VERSION)" -X "flow.boo=123"
