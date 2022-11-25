@@ -28,4 +28,4 @@ jobs:
           goarch: ${{ matrix.goarch }}
           goversion: "1.19"
           project_path: "."
-          ldflags: -X "main.semver=$(VERSION)"
+          ldflags: -X "main.semver=${{github.ref_name}}"
