@@ -22,10 +22,11 @@ jobs:
         env:
           APP_VERSION: $(basename ${GITHUB_REF})
           VERSION: ${{github.ref_name}}
+          FOO: "foo"
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           goos: ${{ matrix.goos }}
           goarch: ${{ matrix.goarch }}
           goversion: "1.19"
           project_path: "."
-          ldflags: "-X github.com/sideninja/flow-cli/flow.semver=$(VERSION)"
+          ldflags: "-X github.com/sideninja/flow-cli/flow.semver=$(VERSION) -X github.com/sideninja/flow-cli/flow.foo=$(FOO) -X github.com/sideninja/flow-cli/flow.boo=\"boo\""
