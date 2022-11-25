@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/sideninja/flow-cli/util"
 
 	"github.com/sideninja/flow-cli/cmd"
@@ -20,6 +21,8 @@ var boo string
 func main() {
 
 	APIURL := viper.GetString("APIURL")
+
+	fmt.Println("HERE", version, foo, boo, "...")
 
 	gateway := gateway.CreateGateway(models.GRPC, APIURL)
 	rootCmd := cmd.NewCmdRoot(gateway, version+foo+boo)
