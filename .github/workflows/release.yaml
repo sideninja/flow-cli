@@ -17,7 +17,6 @@ jobs:
           - goarch: arm64
             goos: windows
     steps:
-      - run: echo ${{github.ref_name}}
       - uses: actions/checkout@v3
       - uses: wangyoucao577/go-release-action@v1.33
         env:
@@ -29,4 +28,4 @@ jobs:
           goarch: ${{ matrix.goarch }}
           goversion: "1.19"
           project_path: "."
-          ldflags: -X "main.semver=${{ env.VERSION }}"
+          ldflags: -X "main.version=${{ env.VERSION }}"
